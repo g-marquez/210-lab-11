@@ -10,10 +10,10 @@
 using namespace std;
 
 struct Fan {
-    string name;
+    string name; 
     string team;
-    int *superBowls;
-
+    int *superBowls; //dynamic array that will hold the years that the
+                     //team in the respective struct won the Super Bowl
     ~Fan() {
         if(superBowls)
             delete [] superBowls;
@@ -34,5 +34,9 @@ int main() {
 // arguments: a pointer to a Fan object
 // returns: n/a
 void displayFan(Fan *fptr) {
-
+    cout << "Fan summary:" << endl;
+    cout << "Name: " << fptr->name << endl;
+    cout << "Favorite NFL team: " << fptr->team << endl;
+    cout << fptr->team << "Super Bowl wins: ";
+    for (int i = 0; i < _; ++i) //maybe pass number of wins as arument?
 }
