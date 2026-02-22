@@ -8,3 +8,31 @@
 #include <string>
 #include <fstream>
 using namespace std;
+
+struct Fan {
+    string name;
+    string team;
+    int *superBowls;
+
+    ~Fan() {
+        if(superBowls)
+            delete [] superBowls;
+        superBowls = nullptr;
+    }
+};
+
+void displayFan(Fan *);
+
+int main() {
+
+
+    return 0;
+}
+
+// displayFan() takes a pointer of a Fan object and outputs its members
+// to the console.
+// arguments: a pointer to a Fan object
+// returns: n/a
+void displayFan(Fan *fptr) {
+
+}
