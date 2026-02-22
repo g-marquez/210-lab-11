@@ -22,6 +22,7 @@ struct Fan {
     }
 };
 
+void createFan(Fan *);
 void displayFan(Fan *);
 
 int main() {
@@ -38,6 +39,11 @@ int main() {
     return 0;
 }
 
+// createFan() takes a pointer of a Fan object and populates its members
+// to the console.
+// arguments: a pointer to a Fan object
+// returns: n/a
+
 // displayFan() takes a pointer of a Fan object and outputs its members
 // to the console.
 // arguments: a pointer to a Fan object
@@ -51,7 +57,7 @@ void displayFan(Fan *fptr) {
         cout << "none (haha)" <<endl;
     else {
         for (int i = 0; i < fptr->numSuperBowls; ++i)
-            
+            cout << fptr->superBowls[i] << " ";
+        cout << endl;
     }
-
 }
