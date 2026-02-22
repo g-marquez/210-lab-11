@@ -22,7 +22,7 @@ struct Fan {
     }
 };
 
-void createFan(Fan *);
+void createFan(ifstream &, Fan *);
 void displayFan(Fan *);
 
 int main() {
@@ -32,7 +32,8 @@ int main() {
     if (fin.good()){
         fin >> numFans;
         Fan *fans = new Fan[numFans];
-
+        for (int i = 0; i < numFans; ++i)
+            createFan(fin, &fans[i]);
         fin.close();
     }
     else {
@@ -40,14 +41,22 @@ int main() {
         return 1;
     }
 
+    for (int i = 0; i < numFans; ++i)
+        displayFan(&fans[i]);
+
     return 0;
 }
 
 // createFan() takes a pointer of a Fan object and populates its members
 // arguments: a pointer to a Fan object
 // returns: n/a
-void createFan(Fan *fptr) {
-
+void createFan(ifstream &fin, Fan *fptr) { //trying to pass the file by reference
+    fin >> fptr->name;
+    fin.ignore();
+    getline(fin, fptr->team);
+    fin >> fptr->numSuperBowls;
+    for (int i = 0; i < fptr->numSuperBowls; ++i)
+        fin >> fptr->superBowls[i];
 }
 
 // displayFan() takes a pointer of a Fan object and outputs its members
