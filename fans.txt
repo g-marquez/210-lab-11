@@ -1,0 +1,24 @@
+4
+Gabe
+Green Bay Packers
+4
+1967
+1968
+1997
+2011
+Martin
+San Francisco 49ers
+5
+1982
+1985
+1989
+1990
+1995
+Michael
+Philadelphia Eagles
+2
+2018
+2025
+Jerry
+Detroit Lions
+0
