@@ -13,6 +13,7 @@ struct Fan {
     string name; 
     string team;
     int numSuperBowls; //to store number for iterating through dynamic array
+                       //makes it easier to account for different num of SBs
     int *superBowls; //dynamic array that will hold the years that the
                      //team in the respective struct won the Super Bowl
     ~Fan() {
@@ -37,7 +38,7 @@ int main() {
         for (int i = 0; i < numFans; ++i)
             displayFan(&fans[i]);
         fin.close();
-        delete [] fans;
+        delete [] fans; //won't let me delete outside of this code block
     }
     else {
         cout << "ERROR! Please verify file name/directory and restart program.";
@@ -46,20 +47,23 @@ int main() {
     return 0;
 }
 
-// createFan() takes a pointer of a Fan object and populates its members
-// arguments: a pointer to a Fan object
+// createFan() takes an ifstream file and a pointer to a Fan object and
+// populates its members
+// arguments: an ifstream object to read data, a pointer to a Fan object
 // returns: n/a
 void createFan(ifstream &fin, Fan *fptr) { //passing the file to make main()
     fin >> fptr->name;                     //cleaner - it worked!
     fin.ignore();
     getline(fin, fptr->team);
-    fin >> fptr->numSuperBowls;
+    fin >> fptr->numSuperBowls; //needed because it's different for each team
+
+    //dynamically allocate array for Super Bowl wins
     fptr->superBowls = new int[fptr->numSuperBowls];
     for (int i = 0; i < fptr->numSuperBowls; ++i)
         fin >> fptr->superBowls[i];
 }
 
-// displayFan() takes a pointer of a Fan object and outputs its members
+// displayFan() takes a pointer to a Fan object and outputs its members
 // to the console.
 // arguments: a pointer to a Fan object
 // returns: n/a
