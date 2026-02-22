@@ -18,7 +18,7 @@ struct Fan {
                      //team in the respective struct won the Super Bowl
     ~Fan() {
         if(superBowls)
-            delete [] superBowls;
+            delete [] superBowls; //deletes the dynamic array within each struct
         superBowls = nullptr;
     }
 };
@@ -38,7 +38,8 @@ int main() {
         for (int i = 0; i < numFans; ++i)
             displayFan(&fans[i]);
         fin.close();
-        delete [] fans; //won't let me delete outside of this code block
+        delete [] fans; //deletes the array of structs/activates destructor
+                        //won't let me delete outside of this code block
     }
     else {
         cout << "ERROR! Please verify file name/directory and restart program.";
@@ -73,10 +74,10 @@ void displayFan(Fan *fptr) {
     cout << "Favorite NFL team: " << fptr->team << endl;
     cout << fptr->team << " Super Bowl wins: ";
     if (fptr->numSuperBowls == 0)
-        cout << "none (haha)" <<endl;
+        cout << "none (haha)" <<endl; //small dig at Super Bowl-less fans
     else {
         for (int i = 0; i < fptr->numSuperBowls; ++i)
-            cout << fptr->superBowls[i] << " ";
+            cout << fptr->superBowls[i] << " "; //output on one line for ease
         cout << endl;
     }
     cout << endl;
