@@ -12,6 +12,7 @@ using namespace std;
 struct Fan {
     string name; 
     string team;
+    int numSuperBowls;
     int *superBowls; //dynamic array that will hold the years that the
                      //team in the respective struct won the Super Bowl
     ~Fan() {
@@ -24,7 +25,15 @@ struct Fan {
 void displayFan(Fan *);
 
 int main() {
+    int numFans;
+    
+    ifstream fin("fans.txt");
+    if (fin.good()){
+        fin >> numFans;
+        Fan *fans = new Fan[numFans];
 
+        fin.close();
+    }
 
     return 0;
 }
@@ -38,5 +47,11 @@ void displayFan(Fan *fptr) {
     cout << "Name: " << fptr->name << endl;
     cout << "Favorite NFL team: " << fptr->team << endl;
     cout << fptr->team << "Super Bowl wins: ";
-    for (int i = 0; i < _; ++i) //maybe pass number of wins as arument?
+    if (fptr->numSuperBowls == 0)
+        cout << "none (haha)" <<endl;
+    else {
+        for (int i = 0; i < fptr->numSuperBowls; ++i)
+            
+    }
+
 }
