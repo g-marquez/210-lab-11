@@ -12,7 +12,7 @@ using namespace std;
 struct Fan {
     string name; 
     string team;
-    int numSuperBowls;
+    int numSuperBowls; //to store number for iterating through dynamic array
     int *superBowls; //dynamic array that will hold the years that the
                      //team in the respective struct won the Super Bowl
     ~Fan() {
@@ -26,14 +26,14 @@ void createFan(ifstream &, Fan *);
 void displayFan(Fan *);
 
 int main() {
-    int numFans;
+    int numFans; 
     
     ifstream fin("fans.txt");
     if (fin.good()){
-        fin >> numFans;
+        fin >> numFans; //first line of fans.txt for number of structs
         Fan *fans = new Fan[numFans];
         for (int i = 0; i < numFans; ++i)
-            createFan(fin, &fans[i]);
+            createFan(fin, &fans[i]); //passing fin to populate Fan struct
         for (int i = 0; i < numFans; ++i)
             displayFan(&fans[i]);
         fin.close();
@@ -49,8 +49,8 @@ int main() {
 // createFan() takes a pointer of a Fan object and populates its members
 // arguments: a pointer to a Fan object
 // returns: n/a
-void createFan(ifstream &fin, Fan *fptr) { //trying to pass the file by reference
-    fin >> fptr->name;
+void createFan(ifstream &fin, Fan *fptr) { //passing the file to make main()
+    fin >> fptr->name;                     //cleaner - it worked!
     fin.ignore();
     getline(fin, fptr->team);
     fin >> fptr->numSuperBowls;
