@@ -34,16 +34,15 @@ int main() {
         Fan *fans = new Fan[numFans];
         for (int i = 0; i < numFans; ++i)
             createFan(fin, &fans[i]);
+        for (int i = 0; i < numFans; ++i)
+            displayFan(&fans[i]);
         fin.close();
+        delete [] fans;
     }
     else {
         cout << "ERROR! Please verify file name/directory and restart program.";
         return 1;
     }
-
-    for (int i = 0; i < numFans; ++i)
-        displayFan(&fans[i]);
-
     return 0;
 }
 
@@ -55,6 +54,7 @@ void createFan(ifstream &fin, Fan *fptr) { //trying to pass the file by referenc
     fin.ignore();
     getline(fin, fptr->team);
     fin >> fptr->numSuperBowls;
+    fptr->superBowls = new int[fptr->numSuperBowls];
     for (int i = 0; i < fptr->numSuperBowls; ++i)
         fin >> fptr->superBowls[i];
 }
@@ -67,7 +67,7 @@ void displayFan(Fan *fptr) {
     cout << "Fan summary:" << endl;
     cout << "Name: " << fptr->name << endl;
     cout << "Favorite NFL team: " << fptr->team << endl;
-    cout << fptr->team << "Super Bowl wins: ";
+    cout << fptr->team << " Super Bowl wins: ";
     if (fptr->numSuperBowls == 0)
         cout << "none (haha)" <<endl;
     else {
@@ -75,4 +75,5 @@ void displayFan(Fan *fptr) {
             cout << fptr->superBowls[i] << " ";
         cout << endl;
     }
+    cout << endl;
 }
