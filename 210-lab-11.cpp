@@ -35,14 +35,20 @@ int main() {
 
         fin.close();
     }
+    else {
+        cout << "ERROR! Please verify file name/directory and restart program.";
+        return 1;
+    }
 
     return 0;
 }
 
 // createFan() takes a pointer of a Fan object and populates its members
-// to the console.
 // arguments: a pointer to a Fan object
 // returns: n/a
+void createFan(Fan *fptr) {
+
+}
 
 // displayFan() takes a pointer of a Fan object and outputs its members
 // to the console.
